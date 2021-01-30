@@ -124,7 +124,7 @@ e3_text = tk.StringVar()
 e4_text = tk.StringVar()
 e5_text = tk.StringVar()
 # 创建控件
-label1 = tk.Label(window, text="要启动的网址（选填）")
+label1 = tk.Label(window, text="要启动的网址（URL 需要填写协议）（选填）")
 e1 = tk.Entry(window, textvariable=e1_text, width=100)
 label2 = tk.Label(window, text="spark-webapp-runtime 的标题（选填）")
 e2 = tk.Entry(window, textvariable=e2_text, width=100)
