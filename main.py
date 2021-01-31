@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 ##########################################################################################
 # 作者：gfdgd xi
-# 版本：1.0.1
+# 版本：1.0.2
 # 感谢：感谢星火商店（Spark-Store）团队，提供了 spark-webapp-runtime 给大家使用，让我能做这个程序
 # 基于 Python3 的 tkinter 构建的 spark-webapp-runtime 前端
 ##########################################################################################
@@ -53,6 +53,7 @@ def liulanico():
 def start():
         runs = threading.Thread(target = start_run)
         runs.start()
+
 def start_run():
     os.system("spark-webapp-runtime -u '" + e1.get() + "' -i '" + e3_text.get() + "' -t '" + e2_text.get() + "' -d '" + e4_text.get() + "'")
 
@@ -62,7 +63,7 @@ def get_home():
 
 # 显示“关于这个程序”窗口
 def about_this_program():
-    tkinter.messagebox.showinfo(title="关于这个程序",message="一个基于 Python3 的 tkinter 制作的 spark-webapp-runtime 运行器\n版本：1.0.1\n适用平台：Linux")
+    tkinter.messagebox.showinfo(title="关于这个程序",message="一个基于 Python3 的 tkinter 制作的 spark-webapp-runtime 运行器\n版本：1.0.2\n适用平台：Linux")
 
 # 显示“提示”窗口
 def helps():
