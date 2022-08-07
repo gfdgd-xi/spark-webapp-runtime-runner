@@ -8,6 +8,10 @@
 #include <QFile>
 #include <QStandardPaths>
 #include <DMessageBox>
+#include <DInputDialog>
+#include <QDateTime>
+#include <QJsonDocument>
+#include <QJsonObject>
 
 DWIDGET_USE_NAMESPACE
 Widget::Widget(QWidget *parent) :
@@ -19,8 +23,16 @@ Widget::Widget(QWidget *parent) :
     help.start("spark-webapp-runtime -h");
     help.waitForFinished();
     ui->moreHelp->setText(help.readAllStandardOutput());
+    // 信息读取
+     QFile information(QCoreApplication::applicationDirPath() + "/information.json");
+     information.open(QIODevice::ReadOnly);
+    QJsonDocument info = QJsonDocument::fromJson(information.readAll());
+    informationJson = info.object();
+    information.close();
     // 允许 qDebug() 输出
     QLoggingCategory::defaultCategory()->setEnabled(QtDebugMsg, true);
+    // 设置开发者信息
+    ui->information->setText("版本：" + informationJson.value("Version").toString() + "\n©2021~" + QDateTime::currentDateTime().toString("yyyy") + " gfdgd xi、为什么您不喜欢熊出没和阿布呢");
 }
 
 Widget::~Widget()
@@ -121,4 +133,22 @@ void Widget::on_pushButton_3_clicked()
 void Widget::on_pushButton_5_clicked()
 {
     WriteDesktop(1);
+}
+
+void Widget::on_moreBuild_clicked()
+{
+    QString package = DInputDialog::getText(this, "输入信息", "请输入要打包的包名：");
+    QString maker = DInputDialog::getText(this, "输入信息", "请输入要打包的维护者：");
+    QString version = DInputDialog::getText(this, "输入信息", "请输入要打包的版本号：");
+    QString informationList[3] = {package, maker, version};
+    for (int i = 0; i < 3; i++) {
+        if(informationList[i] == "") {
+            QMessageBox::information(this, "提示", "信息未填写完整，无法继续");
+            return;
+        }
+    }
+    QProcess process;
+    QStringList command;
+    command << "deepin-terminal" << "-e" << QCoreApplication::applicationDirPath() + "/spark-web-packer" << ui->openUrl->text() << ui->openTitle->text() << iconPath << ui->openShowThings->text() << package << maker << version << ui->openOtherOption->text();
+    process.startDetached(QCoreApplication::applicationDirPath() + "/launch.sh", command);
 }

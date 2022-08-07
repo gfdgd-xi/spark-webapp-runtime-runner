@@ -233,8 +233,8 @@ p, li { white-space: pre-wrap; }
      <item>
       <widget class="QLabel" name="information">
        <property name="text">
-        <string>©2021~Now
-开发者：gfdgd xi、为什么您不喜欢熊出没和阿布呢</string>
+        <string>版本：
+©2021~Now gfdgd xi、为什么您不喜欢熊出没和阿布呢</string>
        </property>
       </widget>
      </item>

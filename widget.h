@@ -2,6 +2,7 @@
 #define WIDGET_H
 
 #include <QWidget>
+#include <QJsonObject>
 
 namespace Ui {
 class Widget;
@@ -33,10 +34,12 @@ private slots:
 
     void on_pushButton_5_clicked();
 
+    void on_moreBuild_clicked();
+
 private:
     Ui::Widget *ui;
     QString iconPath = "";
-
+    QJsonObject informationJson;
 };
 
 #endif // WIDGET_H
