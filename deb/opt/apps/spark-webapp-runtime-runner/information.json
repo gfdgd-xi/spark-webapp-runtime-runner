@@ -1,0 +1,5 @@
+{
+	"Version": "1.1.0",
+	"UpdateThings": "※1、程序全部重构，语言从 Python 转 C++、GUI 从 Tkinter 转 DTK、布局大改，参考了 sgb76 大佬的 Wine 运行器设计图、zty79的桌面快捷方式编辑器的参考布局\n※2、程序新增打包功能",
+	"Thank": "感谢 @星火应用商店 提供的 spark-webapp-runtime 运行环境\n感谢之前 @sgb76 制作的 Wine 运行器设计图以供参考，同时也参考了 @zty79 大佬的桌面快捷方式编辑器的界面布局"
+}

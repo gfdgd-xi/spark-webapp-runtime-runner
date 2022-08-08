@@ -1,0 +1,9 @@
+Package: spark-webapp-runtime-runner
+Version: 1.1.0
+Maintainer: gfdgd xi <3025613752@qq.com>、为什么您不喜欢熊出没和阿布呢
+Homepage: https://gitee.com/gfdgd-xi/spark-webapp-runtime-runner/
+Architecture: all
+Priority: optional
+Depends: spark-webapp-runtime, libdtkcore5, libdtkwidget5, libdtkgui5, curl
+Description: gfdgd xi、为什么您不喜欢熊出没和阿布呢 制作的spark-webapp-runtime-runner
+

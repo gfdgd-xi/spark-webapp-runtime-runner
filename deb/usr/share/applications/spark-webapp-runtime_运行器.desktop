@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=spark-webapp-runtime 运行器
+Version=1.0.2
+Exec=/usr/bin/spark-webapp-runtime-runner
+Icon=/usr/share/icons/hicolor/256x256/apps/spark-webapp-runtime-runner.png
+Type=Application
+Terminal=false
+StartupNotify=true
+Encoding=UTF-8
+Categories=Network;
