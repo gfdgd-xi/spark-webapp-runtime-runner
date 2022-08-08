@@ -12,12 +12,16 @@
 #include <QDateTime>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <DAbstractDialog>
+#include <DButtonBox>
+#include <QDialog>
 
 DWIDGET_USE_NAMESPACE
 Widget::Widget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Widget)
 {
+
     ui->setupUi(this);
     QProcess help;
     help.start("spark-webapp-runtime -h");

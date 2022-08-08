@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>832</width>
-    <height>483</height>
+    <height>583</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -98,7 +98,7 @@
         </layout>
        </item>
        <item>
-        <layout class="QGridLayout" name="gridLayout_2" columnminimumwidth="0,0,0,0">
+        <layout class="QGridLayout" name="gridLayout_2" columnminimumwidth="0,0,0">
          <item row="3" column="0" alignment="Qt::AlignTop">
           <widget class="QLabel" name="label_11">
            <property name="text">
@@ -242,6 +242,20 @@ p, li { white-space: pre-wrap; }
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>openUrl</tabstop>
+  <tabstop>openButton</tabstop>
+  <tabstop>openTitle</tabstop>
+  <tabstop>openShowThings</tabstop>
+  <tabstop>openOtherOption</tabstop>
+  <tabstop>moreHelp</tabstop>
+  <tabstop>moreOpen</tabstop>
+  <tabstop>moreBuild</tabstop>
+  <tabstop>shellName</tabstop>
+  <tabstop>pushButton_4</tabstop>
+  <tabstop>pushButton_3</tabstop>
+  <tabstop>pushButton_5</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

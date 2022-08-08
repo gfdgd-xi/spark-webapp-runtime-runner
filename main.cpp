@@ -9,6 +9,9 @@
 #include <QUrl>
 #include <QDesktopServices>
 #include <QObject>
+#include <QInputDialog>
+#include <DMessageBox>
+#include <DAboutDialog>
 
 DWIDGET_USE_NAMESPACE
 int main(int argc, char *argv[])
@@ -28,19 +31,38 @@ int main(int argc, char *argv[])
      information.open(QIODevice::ReadOnly);
     QJsonDocument info = QJsonDocument::fromJson(information.readAll());
     QJsonObject object = info.object();
+    DAboutDialog *about = new DAboutDialog();
+    about->setLicense("程序协议：GPLV3");
+    //about->setWindowTitle("spark-webapp-runtime 运行器");
+    about->setProductName("spark-webapp-runtime 运行器");
+    about->setProductIcon(QIcon(":/images/icon.png"));
+    //about->setWebsiteLink("https://gitee.com/gfdgd-xi/spark-webapp-runtime-runner");
+    about->setDescription("一个为了方便使用 spark-webapp-runtime 的运行工具");
+    //about->setDescription("Hello World!");
     information.close();
      a.setAttribute(Qt::AA_UseHighDpiPixmaps);
      a.loadTranslator();
      a.setOrganizationName("gfdgd xi、为什么您不喜欢熊出没和阿布呢");
      a.setApplicationVersion(DApplication::buildVersion(object.value("Version").toString()));
-     a.setApplicationAcknowledgementPage("https://你的网站");
+     a.setApplicationAcknowledgementPage("https://gitee.com/gfdgd-xi/spark-webapp-runtime-runner");
      a.setProductIcon(QIcon(":/images/icon.png"));  //设置Logo
      a.setProductName("spark-webapp-runtime 运行器");
      a.setApplicationDescription("一个为了方便使用 spark-webapp-runtime 的运行工具");
      a.setApplicationName("spark-webapp-runtime 运行器"); //只有在这儿修改窗口标题才有效
+     a.setAboutDialog(about);
 
     MainWindow w;
     QMenu *menu = new QMenu();
+    QAction *updateThings = new QAction("更新内容");
+    QObject::connect(updateThings, &QAction::triggered, &w, [&w, object](){
+        DMessageBox::information(&w, "更新内容", object.value("UpdateThings").toString().replace("\\n", "\n"));
+    });
+    menu->addAction(updateThings);
+    QAction *thank = new QAction("谢明列表");
+    QObject::connect(thank, &QAction::triggered, &w, [&w, object](){
+        DMessageBox::information(&w, "谢明列表", object.value("Thank").toString().replace("\\n", "\n"));
+    });
+    menu->addAction(thank);
     QMenu *websize = new QMenu("程序官网");
     QAction *gitee = new QAction("Gitee");
     QObject::connect(gitee, &QAction::triggered, &w, [](){QDesktopServices::openUrl(QUrl("https://gitee.com/gfdgd-xi/spark-webapp-runtime-runner"));});
