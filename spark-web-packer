@@ -190,7 +190,7 @@ echo "Version: $version"
 echo "Depends: spark-webapp-runtime(>1.5)"
 echo "Maintainer: $maintainer"
 echo "Description: A webapp of $url packed by $maintainer using spark webapp runtime"
-echo "Architecture: amd64"
+echo "Architecture: all"
 echo "-----------------------开始生成-----------------------"
 mkdir DEBIAN
 cd DEBIAN
@@ -234,4 +234,5 @@ echo "-----------------------打包结束，软件包在您的用户目录------
 rm -rf /tmp/swrt-app-maker
 xdg-open ~ &
 echo 按下回车键退出
+read
 exit

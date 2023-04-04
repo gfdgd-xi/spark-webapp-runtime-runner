@@ -8,7 +8,7 @@
 #include <QFile>
 #include <QStandardPaths>
 #include <DMessageBox>
-#include <DInputDialog>
+#include <QInputDialog>
 #include <QDateTime>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -141,9 +141,13 @@ void Widget::on_pushButton_5_clicked()
 
 void Widget::on_moreBuild_clicked()
 {
-    QString package = DInputDialog::getText(this, "输入信息", "请输入要打包的包名：");
-    QString maker = DInputDialog::getText(this, "输入信息", "请输入要打包的维护者：");
-    QString version = DInputDialog::getText(this, "输入信息", "请输入要打包的版本号：");
+    if(!QFile::exists(QCoreApplication::applicationDirPath() + "/spark-web-packer") | !QFile::exists(QCoreApplication::applicationDirPath() + "/launch.sh")){
+        QMessageBox::critical(this, "错误", "无法读取脚本文件");
+        return;
+    }
+    QString package = QInputDialog::getText(this, "输入信息", "请输入要打包的包名：");
+    QString maker = QInputDialog::getText(this, "输入信息", "请输入要打包的维护者：");
+    QString version = QInputDialog::getText(this, "输入信息", "请输入要打包的版本号：");
     QString informationList[3] = {package, maker, version};
     for (int i = 0; i < 3; i++) {
         if(informationList[i] == "") {
@@ -153,6 +157,7 @@ void Widget::on_moreBuild_clicked()
     }
     QProcess process;
     QStringList command;
-    command << "deepin-terminal" << "-e" << QCoreApplication::applicationDirPath() + "/spark-web-packer" << ui->openUrl->text() << ui->openTitle->text() << iconPath << ui->openShowThings->text() << package << maker << version << ui->openOtherOption->text();
+    //command << "deepin-terminal" << "--keep-open" << "-C" << "\"" + QCoreApplication::applicationDirPath() + "/spark-web-packer\" \"" + ui->openUrl->text() + "\" \"" + ui->openTitle->text() + "\" \"" + iconPath + "\" \"" + ui->openShowThings->text() + "\" \"" + package + "\" \"" + maker + "\" \"" + version + "\" \"" + ui->openOtherOption->text() + "\"";
+    command << "deepin-terminal" << "--keep-open" << "-e" << QCoreApplication::applicationDirPath() + "/spark-web-packer" << ui->openUrl->text() << ui->openTitle->text() << iconPath << ui->openShowThings->text() << package << maker << version << ui->openOtherOption->text();
     process.startDetached(QCoreApplication::applicationDirPath() + "/launch.sh", command);
 }
